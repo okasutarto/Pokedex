@@ -10,10 +10,17 @@
       <div class="container pb-5 mb-">
         <h1 class="display-1">Welcome to the Pokédex</h1>
         <p class="lead fs-2">Catch 'em all and become a Pokémon Master!</p>
-        <a href="#" class="btn btn-primary btn-lg shadow">Start Exploring</a>
+        <router-link to="/dashboard">
+          <button class="btn btn-primary btn-lg shadow">Start Exploring</button>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
-<style></style>
+<script>
+export default {
+  name: 'Homepage',
+  methods: {}
+}
+</script>
