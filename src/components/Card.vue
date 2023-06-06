@@ -1,9 +1,14 @@
 <template>
   <div class="col">
     <div class="card text-center" style="width: 18rem">
-      <img src="..." class="card-img-top" alt="..." />
+      <img
+        v-if="pokemon.sprites"
+        :src="pokemon.sprites.other.home.front_default"
+        class="card-img-top"
+        alt="..."
+      />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 v-if="pokemon.species" class="card-title">{{ pokemon.species.name }}</h5>
         <p class="card-text">
           Some quick example text to build on the card title and make up the bulk of the card's
           content.
@@ -22,14 +27,14 @@ export default {
       pokemon: {}
     }
   },
-  props: {
-    url: String
-  },
+  props: ['url'],
   methods: {
     async fetchPokemon() {
       try {
         const response = await axios.get(this.url)
-        console.log(response.data)
+        this.pokemon = response.data
+        // console.log(response.data)
+        // console.log(this.pokemon.sprites.other.home.front_default)
       } catch (error) {
         console.log(error)
       }
