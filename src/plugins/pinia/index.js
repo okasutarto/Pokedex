@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export const usePokemonStore = defineStore({
   id: 'pokemonStore',
   state: () => ({
-    pokemon: {}
+    favPokemons: 0,
+    favPokemonsList: []
   }),
   actions: {}
 })
