@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import Dashboard from '../views/Dashboard.vue'
+import FavPokemon from '../views/FavPokemon.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard
+    },
+    {
+      path: '/favourite',
+      name: 'favourite',
+      component: FavPokemon
     }
   ]
 })
