@@ -88,13 +88,6 @@ export default {
     pokemon: Object,
     flavor_text: String,
     colours: Object
-  },
-  data() {
-    return {
-      pokemonSpecies: {}
-    }
-  },
-  methods: {},
-  mounted() {}
+  }
 }
 </script>
