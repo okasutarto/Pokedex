@@ -26,17 +26,26 @@
             :key="index"
           />
         </div>
-        <div class="row row-cols-2">
+        <div class="d-flex flex-cols-2 justify-content-center g-4">
+          <div class="">
+            <button
+              @click.prevent="fetchPokemonSpecies()"
+              type="button"
+              class="btn btn-primary me-1"
+              data-bs-toggle="modal"
+              :data-bs-target="'#' + (pokemon.species ? pokemon.species.name : '')"
+            >
+              Details
+            </button>
+          </div>
           <button
-            @click.prevent="fetchPokemonSpecies()"
+            @click="favPokemonHandler()"
             type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            :data-bs-target="'#' + (pokemon.species ? pokemon.species.name : '')"
+            class="btn ms-1 border-0"
+            :class="[isFav ? 'bg-success' : 'bg-secondary']"
           >
-            Details
+            <i class="bi text-white" :class="[isFav ? 'bi-heart-fill' : 'bi-heart']"></i>
           </button>
-          <button type="button" class="btn btn-primary"><i class="bi bi-heart"></i></button>
         </div>
       </div>
     </div>
@@ -48,17 +57,25 @@
 <script>
 import PokemonModal from './../components/PokemonModal.vue'
 import ImageModal from './../components/ImageModal.vue'
+import { usePokemonStore } from '../plugins/pinia/index'
 import Badge from './Badge.vue'
 import axios from 'axios'
 
 export default {
+  setup() {
+    const pokemonStore = usePokemonStore()
+
+    return { pokemonStore }
+  },
   name: 'Card',
   components: {
     PokemonModal,
     Badge,
     ImageModal
   },
-  props: ['url'],
+  props: {
+    url: String
+  },
   data() {
     return {
       colours: {
@@ -82,7 +99,8 @@ export default {
         fairy: '#D685AD'
       },
       pokemon: {}, // Store the fetched Pokemon data
-      pokemonSpecies: null
+      pokemonSpecies: null,
+      isFav: false
     }
   },
   methods: {
@@ -110,6 +128,18 @@ export default {
         }
       }
       return ''
+    },
+    favPokemonHandler() {
+      if (!this.isFav) {
+        this.isFav = !this.isFav
+        this.pokemonStore.favPokemonsList.push(this.url)
+        localStorage.setItem('favPokemonList', JSON.stringify(this.pokemonStore.favPokemonsList))
+        this.pokemonStore.favPokemons++
+        localStorage.setItem('favPokemonTotal', this.pokemonStore.favPokemons)
+      } else {
+        this.pokemonStore.favPokemons--
+        this.isFav = !this.isFav
+      }
     }
   },
   mounted() {
