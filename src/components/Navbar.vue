@@ -27,15 +27,17 @@
             <!-- </router-link> -->
           </li>
         </ul>
-        <button class="button border-0 bg-transparent position-relative">
-          <i class="bi bi-box2-heart-fill text-white fs-4">
-            <span
-              class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-primary fs-6"
+        <router-link to="/favourite">
+          <button class="button border-0 bg-transparent position-relative">
+            <i class="bi bi-box2-heart-fill text-white fs-4">
+              <span
+                class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-primary fs-6"
+              >
+                {{ pokemonStore.favPokemons }}
+              </span></i
             >
-              {{ pokemonStore.favPokemons }}
-            </span></i
-          >
-        </button>
+          </button>
+        </router-link>
       </div>
     </div>
   </nav>
