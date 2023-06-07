@@ -8,10 +8,7 @@
   >
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 v-if="pokemon.species" class="modal-title">
-            {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
-          </h5>
+        <div class="d-flex justify-content-end p-2">
           <button
             type="button"
             class="btn-close"
@@ -21,12 +18,21 @@
         </div>
         <div class="modal-body row row-cols-2">
           <div>
-            <img
-              v-if="pokemon.sprites"
-              :src="pokemon.sprites.other['official-artwork'].front_default"
-              class="card-img-top"
-              alt="..."
-            />
+            <button
+              class="border border-0 bg-transparent p-0"
+              data-bs-toggle="modal"
+              :data-bs-target="'#' + (pokemon ? pokemon.id : '')"
+            >
+              <h5 v-if="pokemon.species" class="modal-title">
+                {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
+              </h5>
+              <img
+                v-if="pokemon.sprites"
+                :src="pokemon.sprites.other['official-artwork'].front_default"
+                class="card-img-top"
+                alt="..."
+              />
+            </button>
           </div>
           <div v-if="flavor_text" class="d-flex flex-column">
             <p>
