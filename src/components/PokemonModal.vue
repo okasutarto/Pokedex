@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal"
+    class="modal fade"
     tabindex="-1"
     :id="pokemon.species ? pokemon.species.name : ''"
     aria-labelledby="pokemonDetailsModal"
@@ -18,21 +18,16 @@
         </div>
         <div class="modal-body row row-cols-2">
           <div>
-            <button
-              class="border border-0 bg-transparent p-0"
-              data-bs-toggle="modal"
-              :data-bs-target="'#' + (pokemon ? pokemon.id : '')"
-            >
-              <h5 v-if="pokemon.species" class="modal-title">
-                {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
-              </h5>
-              <img
-                v-if="pokemon.sprites"
-                :src="pokemon.sprites.other['official-artwork'].front_default"
-                class="card-img-top"
-                alt="..."
-              />
-            </button>
+            <h5 v-if="pokemon.species" class="modal-title text-center fw-bold mb-2">
+              {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
+            </h5>
+
+            <img
+              v-if="pokemon.sprites"
+              :src="pokemon.sprites.other['official-artwork'].front_default"
+              class="card-img-top"
+              alt="..."
+            />
           </div>
           <div v-if="flavor_text" class="d-flex flex-column">
             <p>
@@ -76,7 +71,14 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-secondary">Favourite</button>
+          <button
+            @click="$emit('favPokemonHandler')"
+            type="button"
+            class="btn ms-1 border-0"
+            :class="[isFav ? 'bg-success' : 'bg-secondary']"
+          >
+            <i class="bi text-white" :class="[isFav ? 'bi-heart-fill' : 'bi-heart']"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -93,7 +95,8 @@ export default {
   props: {
     pokemon: Object,
     flavor_text: String,
-    colours: Object
+    colours: Object,
+    isFav: Boolean
   }
 }
 </script>
