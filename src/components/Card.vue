@@ -138,12 +138,26 @@ export default {
         localStorage.setItem('favPokemonTotal', this.pokemonStore.favPokemons)
       } else {
         this.pokemonStore.favPokemons--
+        localStorage.setItem('favPokemonTotal', this.pokemonStore.favPokemons)
+        this.pokemonStore.favPokemonsList.splice(
+          this.pokemonStore.favPokemonsList.indexOf(this.url),
+          1
+        )
+        localStorage.setItem('favPokemonList', JSON.stringify(this.pokemonStore.favPokemonsList))
         this.isFav = !this.isFav
       }
+    },
+    checkIsFav() {
+      this.pokemonStore.favPokemonsList.forEach((url) => {
+        if (url === this.url) {
+          this.isFav = true
+        }
+      })
     }
   },
   mounted() {
     this.fetchPokemon()
+    this.checkIsFav()
   }
 }
 </script>
