@@ -1,6 +1,25 @@
 <template>
+  <div class="fs-1 fw-semibold d-flex justify-content-center mt-4">
+    Explore the World of Pokémon !
+  </div>
+  <div class="fs-4 d-flex mt-4 ps-5">Filter by type :</div>
+  <div class="ps-5 pt-3">
+    <Badge
+      v-for="type in typeList"
+      :key="type.name"
+      :typeName="type.name"
+      :colours="colours"
+      @filter-pokemon-by-type="filterPokemonByType"
+    />
+  </div>
   <div class="row row-cols-1 row-cols-md-4 row-cols-lg-6 g-4 p-5">
-    <Card v-for="(pokemon, index) in pokemonList" :key="pokemon.name" :url="pokemon.url" />
+    <Card
+      v-for="(pokemon, index) in pokemonList"
+      :key="pokemon.name"
+      :url="pokemon.url"
+      :colours="colours"
+      @filter-pokemon-by-type="filterPokemonByType"
+    />
     <div id="scroll-target"></div>
   </div>
 </template>
@@ -8,16 +27,41 @@
 <script>
 import axios from 'axios'
 import Card from './../components/Card.vue'
+import Badge from '../components/Badge.vue'
 
 export default {
   components: {
-    Card
+    Card,
+    Badge
   },
   data() {
     return {
       pokemonList: [], // Array to store the fetched data
       nextUrl: 'https://pokeapi.co/api/v2/pokemon?offset=20&limit=20', // URL for the next set of data
-      isLoading: false // Flag to track if a request is in progress
+      isLoading: false, // Flag to track if a request is in progress
+      typeList: [],
+      colours: {
+        normal: '#A8A77A',
+        fire: '#EE8130',
+        water: '#6390F0',
+        electric: '#F7D02C',
+        grass: '#7AC74C',
+        ice: '#96D9D6',
+        fighting: '#C22E28',
+        poison: '#A33EA1',
+        ground: '#E2BF65',
+        flying: '#A98FF3',
+        psychic: '#F95587',
+        bug: '#A6B91A',
+        rock: '#B6A136',
+        ghost: '#735797',
+        dragon: '#6F35FC',
+        dark: '#705746',
+        steel: '#B7B7CE',
+        fairy: '#D685AD',
+        unknown: '#68a090',
+        shadow: '#696969'
+      }
     }
   },
   methods: {
@@ -48,11 +92,34 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    async fetchAllType() {
+      try {
+        const response = await axios.get('https://pokeapi.co/api/v2/type/')
+        this.typeList = response.data.results
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async filterPokemonByType(type) {
+      try {
+        this.isLoading = true
+        const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`)
+
+        this.pokemonList = response.data.pokemon.map((pokemon) => {
+          return pokemon.pokemon
+        })
+        console.log('filter')
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   mounted() {
     this.fetchAllPokemon()
+    this.fetchAllType()
 
+    // if (!this.isLoading) {
     const options = {
       root: null, // Use the viewport as the root element
       rootMargin: '0px',
@@ -70,6 +137,7 @@ export default {
     if (target) {
       observer.observe(target) // Start observing the target element
     }
+    // }
   }
 }
 </script>
