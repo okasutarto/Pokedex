@@ -1,10 +1,15 @@
 <template>
-  <div class="fs-1 fw-semibold d-flex justify-content-center mt-4">
+  <div
+    class="fs-1 fw-semibold d-flex pe-5 ps-5 justify-content-center align-items-center text-center mt-4"
+  >
     Explore the World of Pokémon !
   </div>
-  <div class="fs-4 d-flex mt-4 ps-5">Filter by type :</div>
-  <div class="ps-5 pt-3">
+  <div class="fs-4 fw-semibold d-flex mt-4 ps-5">Filter by type :</div>
+  <div
+    class="row-cols-md-auto row-cols-sm-auto row-cols-lg-auto ps-5 pe-5 ps-lg-5 pt-3 pe-lg-2 ps-md-5 pe-md-5 ps-sm-5"
+  >
     <Badge
+      class=""
       v-for="type in typeList"
       :key="type.name"
       :typeName="type.name"
