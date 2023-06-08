@@ -3,7 +3,7 @@
     <div class="container">
       <img
         class="navbar-brand"
-        src="./../public/assets/img/pokedexlogo.png"
+        src="./../assets/img/pokedexlogo.png"
         alt="pokedex"
         width="110"
         height="50"

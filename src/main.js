@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
-import './public/assets/scss/main.scss'
+import './assets/scss/main.scss'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import axios from 'axios'
