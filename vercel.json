@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "index.html",
+        "use": "@vercel/static-build"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/assets/fonts/(.*)",
+        "dest": "/assets/fonts/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
+  }
