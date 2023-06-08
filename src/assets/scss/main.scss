@@ -1,1 +1,10 @@
 @import 'layout';
+
+@font-face {
+    font-family: 'Pokemon';
+    src: url('./src/assets/fonts/pokemon/VT323-Regular.ttf') format('truetype');
+  }
+
+  body {
+    font-family: 'Pokemon';
+  }
