@@ -22,12 +22,18 @@
     />
     <div id="scroll-target"></div>
   </div>
+  <div
+    v-if="pokemonList.length === 0"
+    class="fs-4 d-flex justify-content-center align-content-center"
+  >
+    <p>No Pokémon Found in this category</p>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Card from './../components/Card.vue'
-import Badge from '../components/Badge.vue'
+import Badge from './../components/Badge.vue'
 
 export default {
   components: {
