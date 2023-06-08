@@ -15,9 +15,9 @@
         />
       </button>
       <div class="card-body border-0">
-        <h5 v-if="pokemon.species" class="card-title">
+        <h4 v-if="pokemon.species" class="card-title">
           {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
-        </h5>
+        </h4>
         <div class="card-text mb-3">
           <Badge
             v-for="(type, index) in pokemon.types"
@@ -32,7 +32,7 @@
             <button
               @click.prevent="fetchPokemonSpecies()"
               type="button"
-              class="btn btn-primary me-1"
+              class="btn btn-primary me-1 fs-5"
               data-bs-toggle="modal"
               :data-bs-target="'#' + (pokemon.species ? pokemon.species.name : '')"
             >

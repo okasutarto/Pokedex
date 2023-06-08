@@ -16,19 +16,17 @@
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      ></button>
       <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav ml-auto text-white">
           <li class="nav-item">
             <router-link to="/" style="text-decoration: none">
-              <a class="nav-link text-white fs-5" href="#">Home</a>
+              <a class="nav-link text-white fs-3" href="#">Home</a>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/dashboard" style="text-decoration: none">
-              <a class="nav-link text-white fs-5" href="#">Pokémon</a>
+              <a class="nav-link text-white fs-3" href="#">Pokémon</a>
             </router-link>
           </li>
         </ul>
