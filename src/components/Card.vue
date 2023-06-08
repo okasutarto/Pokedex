@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <div class="card text-center">
+    <div class="card text-center border-0">
       <button
         class="border border-0 bg-transparent p-0"
         data-bs-toggle="modal"
@@ -9,12 +9,12 @@
         <img
           v-if="pokemon.sprites"
           :src="pokemon.sprites.other['official-artwork'].front_default"
-          class="card-img-top"
+          class="card-img-top card-img-bottom rounded-3"
           alt="..."
           :style="SetCardColour()"
         />
       </button>
-      <div class="card-body">
+      <div class="card-body border-0">
         <h5 v-if="pokemon.species" class="card-title">
           {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
         </h5>
@@ -24,9 +24,10 @@
             :typeName="type.type.name"
             :colours="colours"
             :key="index"
+            @filter-pokemon-by-type="$emit('filterPokemonByType', type.type.name)"
           />
         </div>
-        <div class="d-flex flex-cols-2 justify-content-center g-4">
+        <div class="d-flex justify-content-between">
           <div class="">
             <button
               @click.prevent="fetchPokemonSpecies()"
@@ -49,7 +50,13 @@
         </div>
       </div>
     </div>
-    <PokemonModal :flavor_text="pokemonSpecies" :colours="colours" :pokemon="pokemon" />
+    <PokemonModal
+      :flavor_text="pokemonSpecies"
+      :colours="colours"
+      :pokemon="pokemon"
+      :is-Fav="isFav"
+      @fav-pokemon-handler="favPokemonHandler"
+    />
     <ImageModal :pokemon="pokemon" />
   </div>
 </template>
@@ -74,30 +81,11 @@ export default {
     ImageModal
   },
   props: {
-    url: String
+    url: String,
+    colours: Object
   },
   data() {
     return {
-      colours: {
-        normal: '#A8A77A',
-        fire: '#EE8130',
-        water: '#6390F0',
-        electric: '#F7D02C',
-        grass: '#7AC74C',
-        ice: '#96D9D6',
-        fighting: '#C22E28',
-        poison: '#A33EA1',
-        ground: '#E2BF65',
-        flying: '#A98FF3',
-        psychic: '#F95587',
-        bug: '#A6B91A',
-        rock: '#B6A136',
-        ghost: '#735797',
-        dragon: '#6F35FC',
-        dark: '#705746',
-        steel: '#B7B7CE',
-        fairy: '#D685AD'
-      },
       pokemon: {}, // Store the fetched Pokemon data
       pokemonSpecies: null,
       isFav: false
@@ -161,3 +149,9 @@ export default {
   }
 }
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Additional styles for your component */
+</style>
