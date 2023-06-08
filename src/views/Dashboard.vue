@@ -60,7 +60,8 @@ export default {
         steel: '#B7B7CE',
         fairy: '#D685AD',
         unknown: '#68a090',
-        shadow: '#696969'
+        shadow: '#696969',
+        All: '#0d6efd'
       }
     }
   },
@@ -71,13 +72,12 @@ export default {
 
       try {
         const response = await axios.get(this.nextUrl)
-        const data = response.data
 
         // Update the data array with the new results
-        this.pokemonList = [...this.pokemonList, ...data.results]
+        this.pokemonList = [...this.pokemonList, ...response.data.results]
 
         // Update the URL for the next set of data
-        this.nextUrl = data.next
+        this.nextUrl = response.data.next
       } catch (error) {
         console.error(error)
       }
@@ -97,19 +97,28 @@ export default {
       try {
         const response = await axios.get('https://pokeapi.co/api/v2/type/')
         this.typeList = response.data.results
+        this.typeList.unshift({
+          name: 'All',
+          url: 'https://pokeapi.co/api/v2/pokemon'
+        })
       } catch (error) {
         console.log(error)
       }
     },
     async filterPokemonByType(type) {
       try {
-        this.isLoading = true
-        const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`)
+        if (type === 'All') {
+          this.isLoading = false
+          this.fetchAllPokemon()
+        } else {
+          this.isLoading = true
+          const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`)
 
-        this.pokemonList = response.data.pokemon.map((pokemon) => {
-          return pokemon.pokemon
-        })
-        console.log('filter')
+          this.pokemonList = response.data.pokemon.map((pokemon) => {
+            return pokemon.pokemon
+          })
+        }
+        // console.log('filter')
       } catch (error) {
         console.log(error)
       }
