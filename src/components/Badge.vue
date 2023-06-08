@@ -1,7 +1,9 @@
 <template>
-  <span class="badge rounded-pill" :style="setBadgeColor(typeName)">
-    {{ typeName }}
-  </span>
+  <button @click="$emit('filterPokemonByType', typeName)" class="border-0 p-0 bg-transparent">
+    <span class="badge rounded-pill" :style="setBadgeColor(typeName)">
+      {{ typeName }}
+    </span>
+  </button>
 </template>
 
 <script>
