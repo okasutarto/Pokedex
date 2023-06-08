@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg" style="background-color: #ff9524">
+  <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #ff9524">
     <div class="container">
       <img
         class="navbar-brand"
@@ -22,9 +22,14 @@
       <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav ml-auto text-white">
           <li class="nav-item">
-            <!-- <router-link> -->
-            <a class="nav-link text-white fs-5" href="#">Home</a>
-            <!-- </router-link> -->
+            <router-link to="/" style="text-decoration: none">
+              <a class="nav-link text-white fs-5" href="#">Home</a>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/dashboard" style="text-decoration: none">
+              <a class="nav-link text-white fs-5" href="#">Pokémon</a>
+            </router-link>
           </li>
         </ul>
         <router-link to="/favourite">
