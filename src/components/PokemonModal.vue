@@ -21,13 +21,18 @@
             <h5 v-if="pokemon.species" class="modal-title text-center fw-bold mb-2">
               {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
             </h5>
-
-            <img
-              v-if="pokemon.sprites"
-              :src="pokemon.sprites.other['official-artwork'].front_default"
-              class="card-img-top"
-              alt="..."
-            />
+            <button
+              class="border border-0 bg-transparent p-0"
+              data-bs-toggle="modal"
+              :data-bs-target="'#' + (pokemon ? pokemon.id : '')"
+            >
+              <img
+                v-if="pokemon.sprites"
+                :src="pokemon.sprites.other['official-artwork'].front_default"
+                class="card-img-top"
+                alt="..."
+              />
+            </button>
           </div>
           <div v-if="flavor_text" class="d-flex flex-column">
             <p>
@@ -41,6 +46,7 @@
                 :key="index"
                 :typeName="type.type.name"
                 :colours="colours"
+                @filter-pokemon-by-type="$emit('filterPokemonByType', type.type.name)"
               />
             </div>
           </div>
