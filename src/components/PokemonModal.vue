@@ -17,9 +17,9 @@
           ></button>
         </div>
         <div class="modal-body row row-cols-2">
-          <div>
-            <h5 v-if="pokemon.species" class="modal-title text-center fw-bold mb-2">
-              {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <h5 v-if="pokemon.name" class="modal-title text-center fw-bold mb-5">
+              {{ pokemon.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
             </h5>
             <button
               class="border border-0 bg-transparent p-0"
@@ -38,10 +38,21 @@
             <p>
               {{ flavor_text }}
             </p>
+            <div class="d-flex flex-row">
+              <p class="me-2">Base Experience :</p>
+              <p>{{ pokemon.base_experience }}</p>
+            </div>
+            <div class="d-flex flex-row">
+              <p class="me-2">Height :</p>
+              <p>{{ pokemon.height }}"</p>
+            </div>
+            <div class="d-flex flex-row">
+              <p class="me-2">Weight :</p>
+              <p>{{ pokemon.weight }}</p>
+            </div>
             <p class="fw-semibold fs-5">Type</p>
             <div class="d-flex justify-content-center">
               <Badge
-                class="w-50"
                 v-for="(type, index) in pokemon.types"
                 :key="index"
                 :typeName="type.type.name"
@@ -82,6 +93,7 @@
             type="button"
             class="btn ms-1 border-0"
             :class="[isFav ? 'bg-success' : 'bg-secondary']"
+            :data-bs-dismiss="checkIsFav()"
           >
             <i class="bi text-white" :class="[isFav ? 'bi-heart-fill' : 'bi-heart']"></i>
           </button>
@@ -103,6 +115,13 @@ export default {
     flavor_text: String,
     colours: Object,
     isFav: Boolean
+  },
+  methods: {
+    checkIsFav() {
+      if (this.$route.path === '/favourite') {
+        return 'modal'
+      }
+    }
   }
 }
 </script>
