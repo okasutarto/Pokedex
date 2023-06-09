@@ -21,17 +21,17 @@
         <ul class="navbar-nav ml-auto text-white">
           <li class="nav-item">
             <router-link to="/" style="text-decoration: none">
-              <a class="nav-link text-white fs-3" href="#">Home</a>
+              <p class="nav-link text-white fs-3 ms-lg-2 me-lg-4 p-0 m-0">Home</p>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/dashboard" style="text-decoration: none">
-              <a class="nav-link text-white fs-3" href="#">Pokémon</a>
+              <a class="nav-link text-white fs-3 p-sm-0 m-sm-0" href="#">Pokémon</a>
             </router-link>
           </li>
         </ul>
         <router-link to="/favourite">
-          <button class="button border-0 bg-transparent position-relative">
+          <button class="button border-0 bg-transparent position-relative pt-2">
             <i class="bi bi-box2-heart-fill text-white fs-4">
               <span
                 class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-primary fs-6"
