@@ -13,10 +13,12 @@
 .layout {
     height: 100%;
     width: 100%;
-    position: fixed;
-    
+    // position: fixed;
+    // overflow-x: auto;
+    overflow-x: hidden;
     &__main {
         &--background {
+            position: fixed;
             background-image: url("./../img/background.jpg");
             /* Full height */
             height: 100%;
@@ -24,11 +26,6 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-        }
-        &--body {
-            height: 90%;
-            width: 100%;
-            // overflow-y: auto;
         }
     }
 }
