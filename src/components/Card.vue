@@ -15,8 +15,8 @@
         />
       </button>
       <div class="card-body border-0">
-        <h4 v-if="pokemon.species" class="card-title">
-          {{ pokemon.species.name.charAt(0).toUpperCase() + pokemon.species.name.slice(1) }}
+        <h4 v-if="pokemon.name" class="card-title">
+          {{ pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) }}
         </h4>
         <div class="card-text mb-3">
           <Badge
@@ -50,15 +50,15 @@
         </div>
       </div>
     </div>
-    <PokemonModal
-      :flavor_text="pokemonSpecies"
-      :colours="colours"
-      :pokemon="pokemon"
-      :is-Fav="isFav"
-      @fav-pokemon-handler="favPokemonHandler"
-    />
-    <ImageModal :pokemon="pokemon" />
   </div>
+  <PokemonModal
+    :flavor_text="pokemonSpecies"
+    :colours="colours"
+    :pokemon="pokemon"
+    :is-Fav="isFav"
+    @fav-pokemon-handler="favPokemonHandler"
+  />
+  <ImageModal :pokemon="pokemon" />
 </template>
 
 <script>
@@ -126,13 +126,13 @@ export default {
         localStorage.setItem('favPokemonTotal', this.pokemonStore.favPokemons)
       } else {
         this.pokemonStore.favPokemons--
+        this.isFav = !this.isFav
         localStorage.setItem('favPokemonTotal', this.pokemonStore.favPokemons)
         this.pokemonStore.favPokemonsList.splice(
           this.pokemonStore.favPokemonsList.indexOf(this.url),
           1
         )
         localStorage.setItem('favPokemonList', JSON.stringify(this.pokemonStore.favPokemonsList))
-        this.isFav = !this.isFav
       }
     },
     checkIsFav() {
