@@ -1,6 +1,6 @@
 <template>
   <button @click="$emit('filterPokemonByType', typeName)" class="border-0 p-0 bg-transparent">
-    <span class="badge rounded-pill fs-5 fw-normal" :style="setBadgeColor(typeName)">
+    <span class="badge rounded-pill fs-6 fw-normal" :style="setBadgeColor(typeName)">
       {{ typeName }}
     </span>
   </button>
