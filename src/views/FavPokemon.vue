@@ -1,18 +1,20 @@
 <template>
-  <div class="row row-cols-1 row-cols-md-4 row-cols-lg-6 g-4 p-5">
-    <Card
-      v-for="pokemons in pokemonStore.favPokemonsList"
-      :key="pokemons"
-      :url="pokemons"
-      :colours="colours"
-    />
+  <div class="layout">
+    <div class="row row-cols-1 row-cols-md-4 row-cols-lg-6 g-4 p-5">
+      <Card
+        v-for="pokemons in pokemonStore.favPokemonsList"
+        :key="pokemons"
+        :url="pokemons"
+        :colours="colours"
+      />
+    </div>
+    <p
+      v-if="pokemonStore.favPokemonsList.length === 0"
+      class="d-flex justify-content-center fs-2 fw-semibold"
+    >
+      Looks like you haven't caught any Pokémon yet!
+    </p>
   </div>
-  <p
-    v-if="pokemonStore.favPokemonsList.length === 0"
-    class="d-flex justify-content-center fs-2 fw-semibold"
-  >
-    Looks like you haven't caught any Pokémon yet!
-  </p>
 </template>
 
 <script>
