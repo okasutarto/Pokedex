@@ -1,37 +1,39 @@
 <template>
-  <div
-    class="fs-1 fw-semibold d-flex pe-5 ps-5 justify-content-center align-items-center text-center mt-4"
-  >
-    Explore the World of Pokémon !
-  </div>
-  <div class="fs-4 fw-semibold d-flex mt-4 ps-5">Filter by type :</div>
-  <div
-    class="row-cols-md-auto row-cols-sm-auto row-cols-lg-auto ps-5 pe-5 ps-lg-5 pt-3 pe-lg-2 ps-md-5 pe-md-5 ps-sm-5"
-  >
-    <Badge
-      class=""
-      v-for="type in typeList"
-      :key="type.name"
-      :typeName="type.name"
-      :colours="colours"
-      @filter-pokemon-by-type="filterPokemonByType"
-    />
-  </div>
-  <div class="row row-cols-1 row-cols-md-4 row-cols-lg-6 g-4 p-5">
-    <Card
-      v-for="(pokemon, index) in pokemonList"
-      :key="pokemon.name"
-      :url="pokemon.url"
-      :colours="colours"
-      @filter-pokemon-by-type="filterPokemonByType"
-    />
-    <div id="scroll-target"></div>
-  </div>
-  <div
-    v-if="pokemonList.length === 0"
-    class="fs-4 d-flex justify-content-center align-content-center"
-  >
-    <p>No Pokémon Found in this category</p>
+  <div class="layout">
+    <div
+      class="fs-1 fw-semibold d-flex pe-6 ps-6 justify-content-center align-items-center text-center mt-4"
+    >
+      Explore the World of Pokémon !
+    </div>
+    <div class="fs-4 fw-semibold d-flex mt-4 ps-5">Filter by type :</div>
+    <div
+      class="row-cols-md-auto row-cols-sm-auto row-cols-lg-auto ps-5 pe-5 ps-lg-5 pt-3 pe-lg-2 ps-md-5 pe-md-5 ps-sm-5"
+    >
+      <Badge
+        class=""
+        v-for="type in typeList"
+        :key="type.name"
+        :typeName="type.name"
+        :colours="colours"
+        @filter-pokemon-by-type="filterPokemonByType"
+      />
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 row-cols-lg-6 g-4 p-5">
+      <Card
+        v-for="(pokemon, index) in pokemonList"
+        :key="pokemon.name"
+        :url="pokemon.url"
+        :colours="colours"
+        @filter-pokemon-by-type="filterPokemonByType"
+      />
+      <div id="scroll-target"></div>
+    </div>
+    <div
+      v-if="pokemonList.length === 0"
+      class="fs-4 d-flex justify-content-center align-content-center"
+    >
+      <p>No Pokémon Found in this category</p>
+    </div>
   </div>
 </template>
 
@@ -139,7 +141,6 @@ export default {
     this.fetchAllPokemon()
     this.fetchAllType()
 
-    // if (!this.isLoading) {
     const options = {
       root: null, // Use the viewport as the root element
       rootMargin: '0px',
@@ -157,7 +158,6 @@ export default {
     if (target) {
       observer.observe(target) // Start observing the target element
     }
-    // }
   }
 }
 </script>
