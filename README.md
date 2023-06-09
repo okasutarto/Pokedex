@@ -151,7 +151,7 @@ The Navbar component is a key code component in the Pokedex web app that provide
 
 ## 6. Conclusion
 
-This technical documentation has provided an in-depth overview of the Pokedex repository, covering its architecture, dependencies, build processes, and key code components. Understanding these aspects is crucial for developers looking to contribute to the project or gain a comprehensive understanding of the codebase. For further details and specific instructions, refer to the documentation and README file in the repository. Happy coding!
+This documentation has provided an in-depth overview of the Pokedex repository, covering its architecture, dependencies, build processes, and key code components. Understanding these aspects is crucial for developers looking to contribute to the project or gain a comprehensive understanding of the codebase. For further details and specific instructions, refer to the documentation and README file in the repository. Happy coding!
 
 # ---------------------------------------------------------------------------
 
